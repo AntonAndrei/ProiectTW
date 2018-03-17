@@ -1,0 +1,84 @@
+body{ background-color: rgba(241,228,209,1);
+       background-image: url("forestBackground.jpg");
+	   background-position: left top;
+	   background-size: contain;
+	   background-repeat: no-repeat;
+	   font-family: Verdana, Geneva, sans-serif;}
+ h1 { color:#B20505 }
+  p { color:#00024E } 
+   
+   .cTextTop{ font-size:22px; }
+
+   .cTextTop .cBody{ font-size:12px; color:#F1F0ED;
+                   background: linear-gradient(gray, #F0EDE8);
+                   text-shadow: 2px 2px rgba(0, 0, 0, 0.5); 
+                   overflow:scroll;
+                   transform:translate(50px);
+                 }
+
+   .cTextTop .cBody .cText{ font-size:16px; }
+
+    
+   .cButton{ 
+             background-color: rgba(28,28,28,0.4);
+             list-style-type: none;	
+             margin: 0;
+             overflow: hidden;
+			
+			 
+           }
+
+   .cButton li{ float: left; }
+
+   .cButton a{ display: block;
+               color: rgba(255,255,255,1);
+               background-color: rgba(28,28,28,0.8);
+               text-align: center;
+               padding: 14px 16px;
+               text-decoration: none;
+               font-size: 17px;
+              }
+
+   .cButton a:hover{ background-color: #383838; } 
+   .cButton .active{ background-color: #383838; } 
+
+   .cTopBar{ 
+             background-color: rgba(28,28,28,0.4);
+             list-style-type: none;
+             overflow: hidden;
+           }
+
+   .cTopBar li{ float: left; }
+
+   .cTopBar a{ display: block;
+               color: rgba(255,255,255,1);
+               background-color: rgba(28,28,28,0.4);
+               text-align: center;
+               padding: 14px 16px;
+               text-decoration: none;
+               font-size: 17px;
+              }
+   .cTopBar a:hover{ background-color: #383838; } 
+   .cTopBar .active{ background-color: #383838; } 
+
+   input[type=text], select {
+    width: 100%;
+	color:white;
+	background-color:rgba(50,50,50,0.8);
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 4px;
+    box-sizing: border-box;
+    }
+
+
+	
+    div { width:80vh; }
+ blockquote::after,
+ blockquote::before{ 
+ position:relative;
+ top:20px;
+ color:green;
+}
