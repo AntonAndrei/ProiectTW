@@ -1,4 +1,4 @@
-body{ background-color: rgba(241,228,209,1);
+body{ background-color: white;
        background-image: url("forestBackground.jpg");
 	   background-position: left top;
 	   background-size: fill;
@@ -7,15 +7,16 @@ body{ background-color: rgba(241,228,209,1);
  h1 { color:#B20505 }
   p { color:#00024E } 
    
-   .cTextTop{ font-size:22px; }
+   .cTextTop{ font-size:2.8vh; }
 
-   .cTitle{  font-size:26px; color: white;  }
+   .cTitle{  font-size:3vh; color: white;  }
 
-   .cText{   font-size:18px; color: white;  }
+   .cText{   font-size:2vh; color: white;  }
 
    .cBox{ background-color: rgba(28,28,28,0.2);
           padding: 20px 60px;
-          width:80vh;}
+          width:80vh;
+		  overflow: visible;}
     
    .cButton{ 
              background-color: rgba(28,28,28,0.2);
@@ -36,21 +37,22 @@ body{ background-color: rgba(241,228,209,1);
    .cButton a:hover{ background-color: rgba(255,255,255,0.4); } 
    .cButton .active{ background-color: rgba(255,255,255,0.4);} 
 
-   .cTopBar{ 
+   .cTopBar{ width: 80%;
              background-color: rgba(28,28,28,0.2);
+			 padding: 0vw 3vw;
+			 margin: 0 auto;
              list-style-type: none;
              overflow: hidden;
            }
 
-   .cTopBar li{ float: left; }
-
-   .cTopBar a{ display: block;
+   .cTopBar a{ float: left;
+               display: block;
                color: rgba(255,255,255,1);
                background-color: rgba(28,28,28,0.4);
                text-align: center;
                padding: 14px 16px;
                text-decoration: none;
-               font-size: 17px;
+               font-size: 3vh;
               }
    .cTopBar a:hover{ background-color: rgba(255,255,255,0.4); } 
    .cTopBar .active{ background-color: rgba(255,255,255,0.4); } 
@@ -81,9 +83,4 @@ body{ background-color: rgba(241,228,209,1);
     }
 
     div { width:80vh; }
- blockquote::after,
- blockquote::before{ 
- position:relative;
- top:20px;
- color:green;
 }
