@@ -57,6 +57,25 @@ body{ background-color: white;
    .cTopBar a:hover{ background-color: rgba(255,255,255,0.4); } 
    .cTopBar .active{ background-color: rgba(255,255,255,0.4); } 
 
+
+    table {
+	background-color: rgba(0,0,0,0.2);
+    font-family: arial, sans-serif;
+	color: white;
+    border-collapse: collapse;
+    width: 100%;
+    }
+
+    td, th {
+    border: 1px solid white;
+    text-align: left;
+    padding: 8px;
+    }
+
+    tr:nth-child(even) {
+    background-color: rgba(0,0,0,0.4);
+    }
+
    input[type=text], select {
     width: 100%;
 	color:white;
@@ -70,6 +89,30 @@ body{ background-color: white;
     box-sizing: border-box;
     }
 	input[type=password], select {
+    width: 100%;
+	color:white;
+	background-color:rgba(50,50,50,0.2);
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid rgba(0,0,0,0.1);
+	border-color: rgba(255,255,255,0.2);
+    border-radius: 4px;
+    box-sizing: border-box;
+    }
+	input[type=email], select {
+    width: 100%;
+	color:white;
+	background-color:rgba(50,50,50,0.2);
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid rgba(0,0,0,0.1);
+	border-color: rgba(255,255,255,0.2);
+    border-radius: 4px;
+    box-sizing: border-box;
+    }
+	input[type=number], select {
     width: 100%;
 	color:white;
 	background-color:rgba(50,50,50,0.2);
