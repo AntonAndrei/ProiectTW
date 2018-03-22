@@ -37,10 +37,9 @@ body{ background-color: white;
    .cButton a:hover{ background-color: rgba(255,255,255,0.4); } 
    .cButton .active{ background-color: rgba(255,255,255,0.4);} 
 
-   .cTopBar{ width: 80%;
+   .cTopBar{ width: 94%;
              background-color: rgba(28,28,28,0.2);
 			 padding: 0vw 3vw;
-			 margin: 0 auto;
              list-style-type: none;
              overflow: hidden;
            }
