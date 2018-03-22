@@ -76,7 +76,7 @@ body{ background-color: white;
     background-color: rgba(0,0,0,0.4);
     }
 
-   input[type=text], select {
+   input[type=text], select,textarea {
     width: 100%;
 	color:white;
 	background-color:rgba(50,50,50,0.2);
@@ -113,6 +113,19 @@ body{ background-color: white;
     box-sizing: border-box;
     }
 	input[type=number], select {
+    width: 100%;
+	color:white;
+	background-color:rgba(50,50,50,0.2);
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid rgba(0,0,0,0.1);
+	border-color: rgba(255,255,255,0.2);
+    border-radius: 4px;
+    box-sizing: border-box;
+    }
+
+	input[type=date], select {
     width: 100%;
 	color:white;
 	background-color:rgba(50,50,50,0.2);
