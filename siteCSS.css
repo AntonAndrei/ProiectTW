@@ -1,7 +1,7 @@
 body{ background-color: white;
        background-image: url("forestBackground.jpg");
 	   background-position: left top;
-	   background-size: fill;
+	   background-size: fit;
 	   background-repeat: no-repeat;
 	   font-family: Verdana, Geneva, sans-serif;}
  h1 { color:#B20505 }
@@ -12,14 +12,16 @@ body{ background-color: white;
    .cTitle{  font-size:3vh; color: white;  }
 
    .cText{   font-size:2vh; color: white;  }
+   
+   .cError{ font-size:1.4vh; color: rgba(255,50,50,1); }
 
-   .cBox{ background-color: rgba(28,28,28,0.2);
+   .cBox{ background-color: rgba(28,28,28,0.4);
           padding: 20px 60px;
           width:80vh;
 		  overflow: visible;}
     
    .cButton{ 
-             background-color: rgba(28,28,28,0.2);
+             background-color: rgba(28,28,28,0.4);
              list-style-type: none;	
            }
 
@@ -27,7 +29,7 @@ body{ background-color: white;
 
    .cButton a{ display: block;
                color: rgba(255,255,255,1);
-               background-color: rgba(28,28,28,0.2);
+               background-color: rgba(28,28,28,0.4);
                text-align: center;
                padding: 14px 16px;
                text-decoration: none;
@@ -38,8 +40,9 @@ body{ background-color: white;
    .cButton .active{ background-color: rgba(255,255,255,0.4);} 
 
    .cTopBar{ width: 94%;
-             background-color: rgba(28,28,28,0.2);
+             background-color: rgba(28,28,28,0.4);
 			 padding: 0vw 3vw;
+			 margin: 0 auto;
              list-style-type: none;
              overflow: hidden;
            }
@@ -47,7 +50,7 @@ body{ background-color: white;
    .cTopBar a{ float: left;
                display: block;
                color: rgba(255,255,255,1);
-               background-color: rgba(28,28,28,0.4);
+               background-color: rgba(28,28,28,0);
                text-align: center;
                padding: 14px 16px;
                text-decoration: none;
@@ -99,6 +102,52 @@ body{ background-color: white;
     border-radius: 4px;
     box-sizing: border-box;
     }
+	input[type=submit], select {
+    width: 100%;
+	color:white;
+	background-color:rgba(50,50,50,0.2);
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid rgba(50,50,50,0.2);
+	border-color: rgba(50,50,50,0.2);
+    border-radius: 1px;
+    box-sizing: border-box;
+    }
+	#submitButton
+    { 		  
+		display: block;
+        color: rgba(255,255,255,1);
+        background-color: rgba(28,28,28,0.7);
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 17px;
+		border-color: rgba(255,255,255,0); 
+
+
+    }
+	#submitButton:hover
+	{
+	background-color: rgba(255,255,255,0.4); 
+	}
+	#topBar
+    { 	
+		display: block;
+        color: rgba(255,255,255,1);
+        background-color: rgba(28,28,28,0);
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+    	font-size: 3vh;
+		 border-color: rgba(255,255,255,0); 
+
+
+    }
+	#topBar:hover
+	{
+	background-color: rgba(255,255,255,0.4); 
+	}
 	input[type=email], select {
     width: 100%;
 	color:white;
