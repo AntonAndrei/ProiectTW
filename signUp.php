@@ -43,6 +43,22 @@
 			header("Location: siteHTML_Signup.php?name=error2");
 			exit();
 		}
+		
+		if(strlen($Name)>19)
+		{
+			header("Location: siteHTML_Page1.php?name=error4");
+			exit();
+		}
+		
+		$temp = $Name;
+		$temp = str_replace("'" , "xx"  , $temp);
+		$temp = str_replace("\\" , "xx"  , $temp);
+		if(strlen($temp) != strlen($Name))
+		{
+			header("Location: siteHTML_Signup.php?name=error5");
+			exit();
+		}
+		
 	}
 	
 	}
@@ -73,6 +89,16 @@
             header("Location: siteHTML_Signup.php?email=error3");
 			exit();
         }
+		
+		$temp = $Email;
+		$temp = str_replace("'" , "xx"  , $temp);
+		$temp = str_replace("\\" , "xx"  , $temp);
+		if(strlen($temp) != strlen($Email))
+		{
+			header("Location: siteHTML_Signup.php?email=error3");
+			exit();
+		}
+		
 	}
 	
 	}
@@ -93,6 +119,14 @@
 		if($Pass == trim($Pass) && strpos($Pass, ' ') !== false)
 		{
 			header("Location: siteHTML_Signup.php?pass=error3");
+			exit();
+		}
+		$temp = $Pass;
+		$temp = str_replace("'" , "xx"  , $temp);
+		$temp = str_replace("\\" , "xx"  , $temp);
+		if(strlen($temp) != strlen($Pass))
+		{
+			header("Location: siteHTML_Signup.php?pass=error4");
 			exit();
 		}
 		

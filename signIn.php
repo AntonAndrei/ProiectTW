@@ -73,6 +73,7 @@
 				
 				$_SESSION['u_id'] = $row['id'];
 				$_SESSION['u_na'] = $row['name'];
+
 				header("Location: siteHTML_Page1.php");
 				exit();
 			}

@@ -38,6 +38,14 @@
 		{
 		  echo "<p class='cError'> Username can not contain spaces. </p>";
 		}
+		else if (strpos($fullUrl, "name=error4") == true)
+		{
+		  echo "<p class='cError'> Username is too long. </p>";
+		}
+		else if (strpos($fullUrl, "name=error5") == true)
+		{
+		  echo "<p class='cError'> Username contains ' or \ . </p>";
+		}
 	    ?>
 		 <h1 class="cText">Email:</h1>
             <input type="text" id="email" name="email">
@@ -73,6 +81,10 @@
 		else if (strpos($fullUrl, "pass=error3") == true)
 		{
 		  echo "<p class='cError'> Password can not contain spaces. </p>";
+		}
+		else if (strpos($fullUrl, "pass=error4") == true)
+		{
+		  echo "<p class='cError'> Password contains ' or \ . </p>";
 		}
 	    ?>
          <h1 class="cText">Repeat password:</h1>
