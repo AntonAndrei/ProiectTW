@@ -57,6 +57,17 @@
 	<input style="float:right" type="submit" value="Sign Out" id="topBar">
 	</a>
 	</form>
+	<?php
+	
+	$usrName = $_SESSION['u_na'];
+	
+	echo "<form>
+	<a style=\"background-color: rgba(100,28,28,0); float:right; padding: 0px 0px;  text-align: justify;\">
+	<input style=\"float:right\" type=\"submit\" value=\"$usrName\" id=\"topBar\">
+	</a>
+	</form>
+	"
+	?>
 	
    </div>
    <p> 
@@ -149,23 +160,21 @@
    <form action="newGroup.php" method="newGroup">
 		<h1 class="cText">Name:</h1>
 			<input type="text" id="name" name="name">
-		<?php
-		$fullUrl = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-
-		if (strpos($fullUrl, "name=error1") == true)
-		{
-		  echo "<p class='cError'> Name is missing. </p>";
-		}
-		
-		else if (strpos($fullUrl, "name=error2") == true)
-		{
-		  echo "<p class='cError'> Name is too long. </p>";
-		}
-		else if (strpos($fullUrl, "name=error3") == true)
-		{
-		  echo "<p class='cError'> Name contains ' or \ . </p>";
-		}
-	    ?>
+			<script>	
+			var vUrl = window.location.href;
+			if(vUrl.includes("name=error1"))
+			{
+				document.write("<p class='cError'> Name is missing. </p>");
+			}
+			else if(vUrl.includes("name=error2"))
+			{
+				document.write("<p class='cError'> Name is too long. </p>");
+			}
+			else if(vUrl.includes("name=error3"))
+			{
+				document.write("<p class='cError'> Name contains ' or \\ . </p>");
+			}
+		</script>
 		<div class="cButton" style="width:100px; margin: 0 auto; position:relative; top:2vh;">
 			<input type="submit" name="addNew" value="Add new" id="submitButton">
 		</div>
@@ -182,26 +191,25 @@
      <form action="joinGroup.php" method="joinGroup">
 		<h1 class="cText">Group ID:</h1>
             <input type="number" name="ID" value="ID">
-			<?php
-		$fullUrl = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-
-		if (strpos($fullUrl, "grID=error1") == true)
-		{
-		  echo "<p class='cError'> ID is missing. </p>";
-		}
-		else if (strpos($fullUrl, "grID=error2") == true)
-		{
-		  echo "<p class='cError'> Group does not exist. </p>";
-		}
-		else if (strpos($fullUrl, "grID=error3") == true)
-		{
-		  echo "<p class='cError'> Already a member of this group. </p>";
-		}
-		else if (strpos($fullUrl, "grID=error4") == true)
-		{
-		  echo "<p class='cError'> Already a member of this group. </p>";
-		}
-	    ?>
+			<script>	
+			var vUrl = window.location.href;
+			if(vUrl.includes("grID=error1"))
+			{
+				document.write("<p class='cError'> ID is missing. </p>");
+			}
+			else if(vUrl.includes("grID=error2"))
+			{
+				document.write("<p class='cError'> Group does not exist. </p>");
+			}
+			else if(vUrl.includes("grID=error3"))
+			{
+				document.write("<p class='cError'> Already a member of this group. </p>");
+			}
+			else if(vUrl.includes("grID=error4"))
+			{
+				document.write("<p class='cError'> Already a member of this group. </p>");
+			}
+		</script>
 		<div class="cButton" style="width:100px; margin: 0 auto; position:relative; top:2vh;">
 			<input type="submit" name="join" value="Join" id="submitButton">
 		</div>

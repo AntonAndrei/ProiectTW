@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 14 Iun 2018 la 20:23
+-- Generation Time: 15 Iun 2018 la 03:36
 -- Versiune server: 10.1.31-MariaDB
 -- PHP Version: 7.2.3
 
@@ -41,7 +41,9 @@ INSERT INTO `groups` (`id`, `name`) VALUES
 (0, 'personal'),
 (1000, 'base'),
 (1002, 'Rent'),
-(1005, 'Work');
+(1005, 'Work'),
+(1006, 'E3'),
+(1007, 'Video Group');
 
 -- --------------------------------------------------------
 
@@ -73,7 +75,11 @@ INSERT INTO `gr_us` (`id_user`, `id_group`) VALUES
 (1001, 1002),
 (1002, 1005),
 (1001, 1005),
-(1003, 1002);
+(1003, 1002),
+(1004, 1006),
+(1001, 1006),
+(1006, 1006),
+(1006, 1007);
 
 -- --------------------------------------------------------
 
@@ -107,7 +113,22 @@ INSERT INTO `spendings` (`id`, `user_id`, `group_id`, `category`, `name`, `cost`
 (1007, 1001, 1005, 'food', 'Taco Day', 50.5, '2018-07-18', ' I bought everyone at work a taco.'),
 (1008, 1001, 0, 'studies', 'Manga', 20.35, '2018-05-16', ' Good stuff.'),
 (1009, 1002, 1005, 'others', 'Bigger chair', 499, '2018-06-22', ' It\'s better than the other one.'),
-(1010, 1003, 1002, 'bills', 'Water Bill', 120, '2018-06-29', ' ');
+(1010, 1003, 1002, 'bills', 'Water Bill', 120, '2018-06-29', ' '),
+(1011, 1001, 0, 'food', 'Shaorma', 3.2, '2018-04-18', ' '),
+(1012, 1001, 0, 'others', 'Phone', 320.5, '2018-04-18', ' Nokia 7 Plus.'),
+(1013, 1001, 1005, 'others', 'Lamp', 12, '2018-04-23', ' '),
+(1014, 1001, 1002, 'others', 'Lightbulb', 2, '2018-04-25', ' '),
+(1015, 1004, 1006, 'others', 'Main arena', 40000, '2018-06-10', ' Rented the L.A. arena for the E3 convention.'),
+(1016, 1004, 1006, 'others', 'EA Stage', 100000, '2018-06-10', ' Arranged the EA stage.'),
+(1017, 1004, 1006, 'others', 'Ubisoft stage', 100000, '2018-06-10', ' The Ubisoft stage.'),
+(1018, 1004, 1006, 'others', 'Bathesda Hall', 140000, '2018-06-10', ' The grand Bathesda stage.'),
+(1019, 1004, 1006, 'food', 'Food court', 90000, '2018-06-10', ' The costs that should cover all the food for the event.'),
+(1020, 1004, 1006, 'bills', 'Power Bill', 60000, '2018-06-10', ' '),
+(1021, 1004, 1006, 'others', 'Cosplay prizes', 40000, '2018-06-10', ' Prize pool for the cosplay competitions.'),
+(1022, 1003, 0, 'food', 'Big crispy', 4.2, '2018-05-24', ' tsk - delicious'),
+(1023, 1006, 1007, 'food', 'Snacks', 10, '2018-06-15', ' It\'s good stuff.'),
+(1025, 1006, 0, 'others', 'Snack', 11, '2018-06-21', ' Observation.'),
+(1026, 1006, 0, 'food', 'Snack', 11, '2018-06-17', ' It\'s good stuff.');
 
 -- --------------------------------------------------------
 
@@ -130,7 +151,10 @@ INSERT INTO `users` (`id`, `name`, `email`, `pass`) VALUES
 (1000, 'admin', 'teodor.tanase.97@gmail.com', 'admin'),
 (1001, 'Teodor', 'doublebluet@gmail.com', '$2y$10$HxEnIO9A3GFHUUk2DGU89uPHGYu52cRjwl..jc29BNbmOjq6aOXT.'),
 (1002, 'Framiu', 'filuta99@yahoo.com', '$2y$10$zAhMn4B31RTfuORr7ZD6FuYe3A6lPFqK9UFg2W/7rnil2t6VhsWuW'),
-(1003, 'Silviu', 'darklimiter@gmail.com', '$2y$10$.GMNsdFtSzbmmvcBQuXdgu18AMUIRz5mkcPfYCpkxNQtOvXlfHzDC');
+(1003, 'Silviu', 'darklimiter@gmail.com', '$2y$10$.GMNsdFtSzbmmvcBQuXdgu18AMUIRz5mkcPfYCpkxNQtOvXlfHzDC'),
+(1004, 'Richard', 'richard.robinson@gmail.com', '$2y$10$IATwXPjeqn1ie08wfOJzSufGMHGz4jBnXXTKf91RlwHYbJSqlwQXi'),
+(1005, 'Hannah', 'watertemples@yahoo.com', '$2y$10$9fCGsvg7ydmtj.nMcn8UFuCwhUfkWICutatplTJZLxKhxzjVnh25W'),
+(1006, 'Video', 'video@gmail.com', '$2y$10$4lJy07rDBViSe0BF9LK25eryfJBAgyD3UvgkVfFOWFbEF6sf3kidq');
 
 --
 -- Indexes for dumped tables

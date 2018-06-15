@@ -5,7 +5,7 @@
 
 <html>
  <head>
-  <title> E.T. Add New </title>
+  <title> E.T. Statistics </title>
   <link rel="stylesheet" type="text/css" href="siteCSS.css">
  </head>
   <body>
@@ -58,62 +58,195 @@
 	<input style="float:right" type="submit" value="Sign Out" id="topBar">
 	</a>
 	</form>
+	<?php
+	
+	$usrName = $_SESSION['u_na'];
+	
+	echo "<form>
+	<a style=\"background-color: rgba(100,28,28,0); float:right; padding: 0px 0px;  text-align: justify;\">
+	<input style=\"float:right\" type=\"submit\" value=\"$usrName\" id=\"topBar\">
+	</a>
+	</form>
+	"
+	?>
 	
    </div>
    <p> 
    <span>
     <div class="cBox" style="margin: 0 auto;">
-      <h2 class="cTitle"> ADD NEW
-      <h3 class="cText"> 
-	                   You can add a new spending in any group you are a part of, or for your
-					   own personal account. You can check the lists in the given tabs.</h3>
+      <h2 class="cTitle"> Statistics
+      <h3 class="cText">  </h3>
       </h2>
     </div>
   </span>
   </p>
+  
   <div class="cBox" style="margin: 0 auto; padding-bottom: 6vh;">
-   <div style="width: 200px">
-   <form action="addNew.php" method="addNew.php">
-    <h1 class="cText">Name:</h1>
-      <input type="text" id="name" name="name">
-      <?php
-		$fullUrl = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 
-		if (strpos($fullUrl, "name=error1") == true)
+   <div style="width:250px; float: left;">
+   <form action="statsShow.php" method="statsShow">
+   
+	<h1 class="cText"> Select a month: </h1>
+    <select name="month">
+	  <option value="01">January</option>
+	  <option value="02">February</option>
+	  <option value="03">March</option>
+	  <option value="04">April</option>
+	  <option value="05">May</option>
+	  <option value="06">June</option>
+	  <option value="07">July</option>
+	  <option value="08">August</option>
+	  <option value="09">September</option>
+	  <option value="10">October</option>
+	  <option value="11">November</option>
+	  <option value="12">December</option>
+	 </select>
+	 <script>	
+			var vUrl = window.location.href;
+			if(vUrl.includes("date=error"))
+			{
+				document.write("<p class='cError'> Please choose a date. </p>");
+			}
+		</script>
+	</div>
+	
+	<div class="cButton" style="width:160px; background-color: rgba(0,0,0,0); 
+			 margin: 0 auto; position:relative; float:left;
+			 top:  4.7vh; left: 10px;">
+         <input type="submit" name="showStats" value="Show Statistics" id="submitButton">
+    </div>
+	</form>
+	</div>
+	
+	<div class="cBox" style="margin: 0 auto; height: 4vh;">
+	</div>
+  
+	 <div class="cBox" style="margin: 0 auto; padding-bottom: 6vh;">
+	<?php
+   
+	error_reporting(0);
+	ini_set('display_errors', 0);
+	
+	$con = mysqli_connect('127.0.0.1','root','','trex');
+	if(!$con)
+	{
+		echo "<p class='cError'> Connection to server failed. </p>";
+		exit();
+	}
+	if(!mysqli_select_db($con,'trex'))
+	{
+		echo "<p class='cError'> Database not selected. </p>";
+		exit();
+	}
+	
+		$fullUrl = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+		$Group = '';
+		$Category = '';
+		$Month = '';
+		$urlLen = strlen($fullUrl);
+		$i = $urlLen;
+		if($fullUrl[$i-1]=='?')
 		{
-		  echo "<p class='cError'> Name is missing. </p>";
+			$Month = '10';
 		}
-		else if (strpos($fullUrl, "name=error2") == true)
+		else while($fullUrl[$i]!='?')
 		{
-		  echo "<p class='cError'> Name is too long. </p>";
+			$Month .= $fullUrl[$i];
+			$i = $i - 1;
 		}
-		else if (strpos($fullUrl, "name=error3") == true)
+		$Month = strrev ($Month);
+		
+		$sMonth = "";
+		
+		if(1>0) //month
 		{
-		  echo "<p class='cError'> Name contains ' or \ . </p>";
+			if (strpos($Month, "01") !== false) { $sMonth = "January"; }
+			if (strpos($Month, "02") !== false) { $sMonth = "February"; }
+			if (strpos($Month, "03") !== false) { $sMonth = "March"; }
+			if (strpos($Month, "04") !== false) { $sMonth = "April"; }
+			if (strpos($Month, "05") !== false) { $sMonth = "May"; }
+			if (strpos($Month, "06") !== false) { $sMonth = "June"; }
+			if (strpos($Month, "07") !== false) { $sMonth = "July"; }
+			if (strpos($Month, "08") !== false) { $sMonth = "August"; }
+			if (strpos($Month, "09") !== false) { $sMonth = "September"; }
+			if (strpos($Month, "10") !== false) { $sMonth = "October"; }
+			if (strpos($Month, "11") !== false) { $sMonth = "November"; }
+			if (strpos($Month, "12") !== false) { $sMonth = "December"; }
+			
 		}
-	    ?>
-	<h1 class="cText"> Select a group: </h1>
-    <select name="group">
-	  <option value="personal">Personal</option>
-	  <?php
-	 
-		echo "<br> PHP WORKS";
+		
+			$usrID = $_SESSION['u_id'];
+			
+		$sql = "SELECT name, cost, MAX(cost), date, obs FROM spendings 
+			WHERE group_id = 0 AND user_id = $usrID
+			AND EXTRACT(MONTH FROM date) = $Month 
+			GROUP BY id ORDER BY cost DESC";
+		
+		$result = $con->query($sql);
+				
+		if ($result->num_rows > 0)
+		{
+				$counter = 0;
+				$avgCost = 0.00;
+				$totalCost = 0.00;
+				$showedMax = false;
+				while($row = $result->fetch_assoc()) 
+				{
+					$eCost = $row["cost"];
+					$maxCost = $row["MAX(cost)"];
+					$counter = $counter + 1;
+					$totalCost = $totalCost + $eCost;
+					if($eCost == $maxCost AND $showedMax == false)
+					{
+						$showedMax = true;
+						$eName = $row["name"];
+						$eDate = $row["date"];
+						$eObs = $row["obs"];
+						echo "<table>";
+						echo "<tr>";
+						echo "<th> Most expensive item in the month of $sMonth : </th>";
+						echo "</tr>";
+						echo "</table>";
+						echo "<table>";
+						echo "<tr>";
+						echo "<th>$eName</th>";
+						echo "<th>$eCost \$</th>";
+						echo "<th>$eDate </th>";
+						echo "<th>$eObs </th>";
+						echo "</tr>";
+						echo "</table>";								
+					}
+				}
+				$avgCost = $totalCost / $counter;
+				echo "<table>";
+				echo "<tr>";
+				echo "<th>Number of items</th>";
+				echo "<th width=\"38%\">Average</th>";
+				echo "<th width=\"38%\">Total</th>";
+				echo "</tr>";
+				echo "<tr>";
+				echo "<th>$counter </th>";
+				echo "<th>$avgCost </th>";
+				echo "<th>$totalCost </th>";
+				echo "</tr>";
+				echo "</table>";	
+		}
+		else
+		{
+			echo "<table>";
+			echo "<tr>";
+			echo "<th> Nothing personal to show in the month of $sMonth. </th>";
+			echo "</tr>";
+			echo "</table>";
+		}
 	  
-		$con = mysqli_connect('127.0.0.1','root','','trex');
-		if(!$con)
-		{
-			header("refresh:5; url=siteHTML_Home.html");
-			exit("Connection to server failed");
-		}
-		if(!mysqli_select_db($con,'trex'))
-		{
-			header("refresh:5; url=siteHTML_Home.html");
-			exit("Database not selected");
-		}
-	
-		$user_id = $_SESSION['u_id'];
-	
-		$sql = "SELECT id_user, id_group FROM gr_us WHERE id_user = $user_id;";
+			echo"<table style=\"background-color: rgba(0,0,0,0);;\">
+				<tr>
+				<td height=\"60\" style=\"border: 1px solid rgba(1,1,1,0)\"> </td>
+				</tr>
+				</table>";
+		
+		$sql = "SELECT id_user, id_group FROM gr_us WHERE id_user = $usrID";
 		$result = mysqli_query($con,$sql);
 		if($result = mysqli_query($con,$sql))
 		{
@@ -126,82 +259,75 @@
 				{
 					while ($roww = mysqli_fetch_row($resultt))
 					{
-						$name = $roww[0];
-						echo $name;
-						echo "<option value=\"$name\">$name</option>";	
+						$grName = $roww[0];
 					}
 				}
+				$sqlll = "SELECT name, cost, MAX(cost), date, obs FROM spendings 
+						WHERE group_id = $group_id
+						AND EXTRACT(MONTH FROM date) = $Month 
+						GROUP BY id ORDER BY cost DESC";
+		
+						$resulttt = $con->query($sqlll);
+				
+				if ($resulttt->num_rows > 0)
+				{
+					$showedMax = false;
+					$showedMax = false;
+					$counter = 0;
+					$avgCost = 0.00;
+					$totalCost = 0.00;
+					while($rowww = $resulttt->fetch_assoc()) 
+					{	
+						$eCost = $rowww["cost"];
+						$maxCost = $rowww["MAX(cost)"];
+						
+						$counter = $counter + 1;
+						$totalCost = $totalCost + $eCost;
+						
+						if($eCost == $maxCost AND $showedMax == false)
+						{
+							$showedMax = true;
+							$showedMax = true;
+							$eName = $rowww["name"];
+							$eDate = $rowww["date"];
+							$eObs = $rowww["obs"];
+							echo "<table>";
+							echo "<tr>";
+							echo "<th> Most expensive item in the $grName category , in the month of $sMonth : </th>";
+							echo "</tr>";
+							echo "</table>";
+							echo "<table>";
+							echo "<tr>";
+							echo "<th>$eName</th>";
+							echo "<th>$eCost \$</th>";
+							echo "<th>$eDate </th>";
+							echo "<th>$eObs </th>";
+							echo "</tr>";
+							echo "</table>";								
+						}
+					}
+							$avgCost = $totalCost / $counter;
+							echo "<table>";
+							echo "<tr>";
+							echo "<th width=\"50%\">Average</th>";
+							echo "<th>Total</th>";
+							echo "</tr>";
+							echo "<tr>";
+							echo "<th>$avgCost $ </th>";
+							echo "<th>$totalCost $ </th>";
+							echo "</tr>";
+							echo "</table>";	
+				}
+				echo"<table style=\"background-color: rgba(0,0,0,0);;\">
+				<tr>
+				<td height=\"60\" style=\"border: 1px solid rgba(1,1,1,0)\"> </td>
+				</tr>
+				</table>";
 			}
 		}
-	  
-	?>
-	  <?php
-		$fullUrl = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-
-		if (strpos($fullUrl, "group=error") == true)
-		{
-		  echo "<p class='cError'> Group error. </p>";
-		}
-	    ?>
-	</select>
-
-    <h1 class="cText"> Select a category: </h1>
-    <select name="category">
-      <option value="others">Others</option>
-      <option value="bills">Bills</option>
-      <option value="food">Food</option>
-      <option value="studies">Studies</option>
-    </select>
-	<?php
-		$fullUrl = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-
-		if (strpos($fullUrl, "category=error") == true)
-		{
-		  echo "<p class='cError'> Category error. </p>";
-		}
-	    ?>
-    
-    <h1 class="cText">Cost (in dollars) :</h1>
-     <input type="number" step="0.01" name="cost" value="">
-	<?php
-		$fullUrl = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-
-		if (strpos($fullUrl, "cost=error") == true)
-		{
-		  echo "<p class='cError'> Please input an amount. </p>";
-		}
-	    ?>
 		
-	<h2 class="cText">Date:</h2>
-     <input type="date" name="date">
-	 <?php
-		$fullUrl = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-
-		if (strpos($fullUrl, "date=error") == true)
-		{
-		  echo "<p class='cError'> Please choose a date. </p>";
-		}
-	    ?>
-		
-    </div>
-	
-    <h3 class="cText">Observations:</h3>
-    <div style="margin: 0 auto;">
-      <textarea rows="4" cols="80" name="comment"> </textarea>
-    </div>
-	<?php
-		$fullUrl = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-
-		if (strpos($fullUrl, "obs=error") == true)
-		{
-		  echo "<p class='cError'> Observation is too long. </p>";
-		}
-	    ?>
-
-	<div class="cButton" style="width:100px; margin: 0 auto; position:relative; top:2vh;">
-         <input type="submit" name="addNew" value="Add new" id="submitButton">
-    </div>
-</form>
+					
+   ?>
   </div>
 
  </body>

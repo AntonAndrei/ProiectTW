@@ -19,32 +19,34 @@
       <form action="signIn.php" method="signIn" >
          <div style="color:white; position:relative; left:37%; font-size: 20px;">Name</div>
          <input type="text" id="name" name="name"><br>
-		 <?php
-		$fullUrl = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-
-		if (strpos($fullUrl, "name=error1") == true)
-		{
-		  echo "<p class='cError'> Username field is empty. </p>";
-		}
-		else if (strpos($fullUrl, "name=error2") == true)
-		{
-		  echo "<p class='cError'> Username does not exist. </p>";
-		}
-	    ?>
+		 <script>
+			
+			var vUrl = window.location.href;
+			if(vUrl.includes("name=error1"))
+			{
+				document.write("<p class='cError'> Username field is empty. </p>");
+			}
+			else if(vUrl.includes("name=error2"))
+			{
+				document.write("<p class='cError'> Username does not exist. </p>");
+			}
+			
+			</script>
          <div style="color:white; position:relative; left:29%; font-size: 20px;">Password</div>
             <input type="password" id="pass" name="pass"><br>
-			<?php
-		$fullUrl = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-
-		if (strpos($fullUrl, "pass=error1") == true)
-		{
-		  echo "<p class='cError'> Password field is empty. </p>";
-		}
-		else if (strpos($fullUrl, "pass=error2") == true)
-		{
-		  echo "<p class='cError'> Password is incorrect. </p>";
-		}
-	    ?>
+			<script>
+			
+			var vUrl = window.location.href;
+			if(vUrl.includes("pass=error1"))
+			{
+				document.write("<p class='cError'> Password field is empty. </p>");
+			}
+			else if(vUrl.includes("pass=error2"))
+			{
+				document.write("<p class='cError'> Password is incorrect. </p>");
+			}
+			
+			</script>
 			<input class="cButton" type="submit" value="Sign In" id="submitButton">
 			</form>
        <div class="cButton" style="width:220px; position:relative; ">

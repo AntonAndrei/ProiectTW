@@ -58,6 +58,17 @@
 	<input style="float:right" type="submit" value="Sign Out" id="topBar">
 	</a>
 	</form>
+	<?php
+	
+	$usrName = $_SESSION['u_na'];
+	
+	echo "<form>
+	<a style=\"background-color: rgba(100,28,28,0); float:right; padding: 0px 0px;  text-align: justify;\">
+	<input style=\"float:right\" type=\"submit\" value=\"$usrName\" id=\"topBar\">
+	</a>
+	</form>
+	"
+	?>
 	
    </div>
    <p> 
@@ -76,25 +87,27 @@
    <form action="addNew.php" method="addNew.php">
     <h1 class="cText">Name:</h1>
       <input type="text" id="name" name="name">
-      <?php
-		$fullUrl = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-
-		if (strpos($fullUrl, "name=error1") == true)
-		{
-		  echo "<p class='cError'> Name is missing. </p>";
-		}
-		else if (strpos($fullUrl, "name=error2") == true)
-		{
-		  echo "<p class='cError'> Name is too long. </p>";
-		}
-		else if (strpos($fullUrl, "name=error3") == true)
-		{
-		  echo "<p class='cError'> Name contains ' or \ . </p>";
-		}
-	    ?>
+	  <script>
+			
+			var vUrl = window.location.href;
+			if(vUrl.includes("name=error1"))
+			{
+				document.write("<p class='cError'> Name is missing. </p>");
+			}
+			else if(vUrl.includes("name=error2"))
+			{
+				document.write("<p class='cError'> Name is too long. </p>");
+			}
+			else if(vUrl.includes("name=error3"))
+			{
+				document.write("<p class='cError'> Name contains ' or \\ . </p>");
+			}
+			
+			</script>
 	<h1 class="cText"> Select a group: </h1>
     <select name="group">
 	  <option value="personal">Personal</option>
+	  
 	  <?php
 	 
 		echo "<br> PHP WORKS";
@@ -135,15 +148,14 @@
 		}
 	  
 	?>
-	  <?php
-		$fullUrl = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-
-		if (strpos($fullUrl, "group=error") == true)
-		{
-		  echo "<p class='cError'> Group error. </p>";
-		}
-	    ?>
 	</select>
+	<script>	
+			var vUrl = window.location.href;
+			if(vUrl.includes("group=error"))
+			{
+				document.write("<p class='cError'> Group error. </p>");
+			}
+		</script>
 
     <h1 class="cText"> Select a category: </h1>
     <select name="category">
@@ -152,36 +164,33 @@
       <option value="food">Food</option>
       <option value="studies">Studies</option>
     </select>
-	<?php
-		$fullUrl = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-
-		if (strpos($fullUrl, "category=error") == true)
-		{
-		  echo "<p class='cError'> Category error. </p>";
-		}
-	    ?>
+	<script>	
+			var vUrl = window.location.href;
+			if(vUrl.includes("category=error"))
+			{
+				document.write("<p class='cError'> Category error. </p>");
+			}
+		</script>
     
     <h1 class="cText">Cost (in dollars) :</h1>
      <input type="number" step="0.01" name="cost" value="">
-	<?php
-		$fullUrl = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-
-		if (strpos($fullUrl, "cost=error") == true)
-		{
-		  echo "<p class='cError'> Please input an amount. </p>";
-		}
-	    ?>
+	 <script>	
+			var vUrl = window.location.href;
+			if(vUrl.includes("cost=error"))
+			{
+				document.write("<p class='cError'> Please input an amount. </p>");
+			}
+	</script>
 		
 	<h2 class="cText">Date:</h2>
      <input type="date" name="date">
-	 <?php
-		$fullUrl = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-
-		if (strpos($fullUrl, "date=error") == true)
-		{
-		  echo "<p class='cError'> Please choose a date. </p>";
-		}
-	    ?>
+	 <script>	
+			var vUrl = window.location.href;
+			if(vUrl.includes("date=error"))
+			{
+				document.write("<p class='cError'> Please choose a date. </p>");
+			}
+	</script>
 		
     </div>
 	
@@ -189,14 +198,13 @@
     <div style="margin: 0 auto;">
       <textarea rows="4" cols="80" name="comment"> </textarea>
     </div>
-	<?php
-		$fullUrl = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-
-		if (strpos($fullUrl, "obs=error") == true)
-		{
-		  echo "<p class='cError'> Observation is too long. </p>";
-		}
-	    ?>
+	<script>	
+			var vUrl = window.location.href;
+			if(vUrl.includes("obs=error"))
+			{
+				document.write("<p class='cError'> Observation is too long. </p>");
+			}
+	</script>
 
 	<div class="cButton" style="width:100px; margin: 0 auto; position:relative; top:2vh;">
          <input type="submit" name="addNew" value="Add new" id="submitButton">

@@ -29,7 +29,7 @@
 	else if($Name)
 	{
 		
-		if($Name == trim($Name) && strpos($Name, ' ') !== false)
+		if(strpos($Name, ' ') !== false)
 		{
 			header("Location: siteHTML_Signup.php?name=error3");
 			exit();

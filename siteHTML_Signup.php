@@ -23,84 +23,87 @@
    <form action="signUp.php" method="signUp" >
          <h1 class="cText">Username:</h1>
             <input type="text" id="name" name="name">
-			<?php
-		$fullUrl = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-
-		if (strpos($fullUrl, "name=error1") == true)
-		{
-		  echo "<p class='cError'> Username field is empty. </p>";
-		}
-		else if (strpos($fullUrl, "name=error2") == true)
-		{
-		  echo "<p class='cError'> Username is already taken. </p>";
-		}
-		else if (strpos($fullUrl, "name=error3") == true)
-		{
-		  echo "<p class='cError'> Username can not contain spaces. </p>";
-		}
-		else if (strpos($fullUrl, "name=error4") == true)
-		{
-		  echo "<p class='cError'> Username is too long. </p>";
-		}
-		else if (strpos($fullUrl, "name=error5") == true)
-		{
-		  echo "<p class='cError'> Username contains ' or \ . </p>";
-		}
-	    ?>
+			<script>
+			
+			var vUrl = window.location.href;
+			if(vUrl.includes("name=error1"))
+			{
+				document.write("<p class='cError'> Username field is empty. </p>");
+			}
+			else if(vUrl.includes("name=error2"))
+			{
+				document.write("<p class='cError'> Username is already taken. </p>");
+			}
+			else if(vUrl.includes("name=error3"))
+			{
+				document.write("<p class='cError'> Username can not contain spaces. </p>");
+			}
+			else if(vUrl.includes("name=error4"))
+			{
+				document.write("<p class='cError'> Username is too long. </p>");
+			}
+			else if(vUrl.includes("name=error5"))
+			{
+				document.write("<p class='cError'> Username contains ' or \\ . </p>");
+			}
+				
+			</script>
 		 <h1 class="cText">Email:</h1>
             <input type="text" id="email" name="email">
-			<?php
-		$fullUrl = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-
-		if (strpos($fullUrl, "email=error1") == true)
-		{
-		  echo "<p class='cError'> Email field is empty. </p>";
-		}
-		else if (strpos($fullUrl, "email=error2") == true)
-		{
-		  echo "<p class='cError'> Email has already been used. </p>";
-		}
-		else if (strpos($fullUrl, "email=error3") == true)
-		{
-		  echo "<p class='cError'> Email is invalid. </p>";
-		}
-	    ?>
+			<script>
+			
+			var vUrl = window.location.href;
+			if(vUrl.includes("email=error1"))
+			{
+				document.write("<p class='cError'> Email field is empty. </p>");
+			}
+			else if(vUrl.includes("email=error2"))
+			{
+				document.write("<p class='cError'> Email has already been used. </p>");
+			}
+			else if(vUrl.includes("email=error3"))
+			{
+				document.write("<p class='cError'> Email is invalid. </p>");
+			}
+				
+			</script>
          <h1 class="cText">Password:</h1>
             <input type="password" id="pass" name="pass">
-			<?php
-		$fullUrl = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-
-		if (strpos($fullUrl, "pass=error1") == true)
-		{
-		  echo "<p class='cError'> Password field is empty. </p>";
-		}
-		else if (strpos($fullUrl, "pass=error2") == true)
-		{
-		  echo "<p class='cError'> Password needs to be at least 6 characters long. </p>";
-		}
-		else if (strpos($fullUrl, "pass=error3") == true)
-		{
-		  echo "<p class='cError'> Password can not contain spaces. </p>";
-		}
-		else if (strpos($fullUrl, "pass=error4") == true)
-		{
-		  echo "<p class='cError'> Password contains ' or \ . </p>";
-		}
-	    ?>
+			<script>
+			var vUrl = window.location.href;
+			if(vUrl.includes("pass=error1"))
+			{
+				document.write("<p class='cError'> Password field is empty. </p>");
+			}
+			else if(vUrl.includes("pass=error2"))
+			{
+				document.write("<p class='cError'> Password needs to be at least 6 characters long. </p>");
+			}
+			else if(vUrl.includes("pass=error3"))
+			{
+				document.write("<p class='cError'> Password can not contain spaces. </p>");
+			}
+			else if(vUrl.includes("pass=error4"))
+			{
+				document.write("<p class='cError'> Password contains ' or \ . </p>");
+			}
+			</script>
+		
          <h1 class="cText">Repeat password:</h1>
             <input type="password" id="rePass" name="rePass">
-			<?php
-		$fullUrl = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-
-		if (strpos($fullUrl, "rep=error1") == true)
-		{
-		  echo "<p class='cError'> Repeat the password. </p>";
-		}
-		else if (strpos($fullUrl, "rep=error2") == true)
-		{
-		  echo "<p class='cError'> Passwords do not match. </p>";
-		}
-	    ?>
+			<script>
+			
+			var vUrl = window.location.href;
+			if(vUrl.includes("rep=error1"))
+			{
+				document.write("<p class='cError'> Repeat the password. </p>");
+			}
+			else if(vUrl.includes("rep=error2"))
+			{
+				document.write("<p class='cError'> Passwords do not match. </p>");
+			}
+				
+			</script>
          <input type="submit" value="Sign Up" id="submitButton">
 	</form>
 

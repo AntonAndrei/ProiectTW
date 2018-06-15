@@ -52,11 +52,23 @@
     <input type="submit" value="Groups" id="topBar">
 	</a>
 	</form>
+	</form>
 	<form action="signOut.php" method="signOut">
 	<a style="background-color: rgba(100,28,28,0); float:right; padding: 0px 0px;  text-align: justify;">
 	<input style="float:right" type="submit" value="Sign Out" id="topBar">
 	</a>
 	</form>
+	<?php
+	
+	$usrName = $_SESSION['u_na'];
+	
+	echo "<form>
+	<a style=\"background-color: rgba(100,28,28,0); float:right; padding: 0px 0px;  text-align: justify;\">
+	<input style=\"float:right\" type=\"submit\" value=\"$usrName\" id=\"topBar\">
+	</a>
+	</form>
+	"
+	?>
 	
    </div>
 
@@ -182,10 +194,11 @@
 			{
 				$sql = "SELECT name, user_id, cost, date, obs FROM spendings 
 						WHERE group_id = $grID AND category = 'bills'
-						AND user_id = $usrID;";
+						AND user_id = $usrID ORDER BY date DESC;";
 				$result = $con->query($sql);
 				if ($result->num_rows > 0)
 				{
+					$Total = 0.00;
 					echo "<tr>
 						<th width=\"15%\";>Name</th>
 						<th width=\"15%\";>Cost</th>
@@ -198,7 +211,8 @@
 						$eName = $row["name"];
 						$eCost = $row["cost"];
 						$eDate = $row["date"];
-						$eObs = $row["obs"];		
+						$eObs = $row["obs"];	
+						$Total = $Total + $eCost;
 					
 					echo "<tr>";
 					echo "<th>$eName</th>";
@@ -207,6 +221,12 @@
 					echo "<th>$eObs</th>";
 					echo "</tr>";
 					}
+					echo " </table> ";
+					echo "<table>";
+					echo "<tr>
+						<th width=\"50%\";>Total:</th>
+						<th width=\"50%\";>$Total \$</th>
+						</tr> </table>";
 				}
 				else
 				{
@@ -217,10 +237,11 @@
 			{
 				
 				$sql = "SELECT name, user_id, cost, date, obs FROM spendings 
-						WHERE group_id = $grID AND category = 'bills';";
+						WHERE group_id = $grID AND category = 'bills' ORDER BY date DESC;";
 				$result = $con->query($sql);
 				if ($result->num_rows > 0)
 				{
+					$Total = 0.00;
 					echo "<tr>
 						<th width=\"15%\";>User</th>
 						<th width=\"15%\";>Name</th>
@@ -230,12 +251,12 @@
 						</tr>";
 					while($row = $result->fetch_assoc()) 
 					{
-						
 						$eName = $row["name"];
 						$eCost = $row["cost"];
 						$eDate = $row["date"];
 						$eObs = $row["obs"];
 						$eUsrID = $row["user_id"];
+						$Total = $Total + $eCost;
 					
 					$sqll = "SELECT name FROM users WHERE
 							 id = $eUsrID;";
@@ -251,6 +272,13 @@
 					echo "<th>$eObs</th>";
 					echo "</tr>";
 					}
+					
+					echo " </table> ";
+					echo "<table>";
+					echo "<tr>
+						<th width=\"50%\";>Total:</th>
+						<th width=\"50%\";>$Total \$</th>
+						</tr> </table>";
 				}
 				else
 				{
@@ -262,8 +290,6 @@
    ?>
    
    
-   
-  </table>
   </div>
  
  </body>
