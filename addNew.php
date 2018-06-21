@@ -60,6 +60,7 @@
 	  }
 	  else
 	  {
+		  $Group=(filter_var($Group, FILTER_SANITIZE_MAGIC_QUOTES)) ;
 		  $sql = "SELECT id FROM groups WHERE name = '$Group';";
 		  $result = $con->query($sql);
 		  $row = $result->fetch_assoc();
@@ -150,9 +151,7 @@
 	$usrID = $_SESSION['u_id'];
 	$newDate = date("Y-m-d", strtotime($Date));
 	
-	$Obs = str_replace("'" , "''"  , $Obs);
-	
-	$Obs = str_replace("\\" , "/"  , $Obs);
+	$Obs=(filter_var($Obs, FILTER_SANITIZE_MAGIC_QUOTES)) ;
 	
 	
 	$sql = "INSERT INTO spendings VALUES ($expID ,$usrID ,$grID ,'$Category' ,'$Name' ,$Cost,'$newDate' ,'$Obs' );";

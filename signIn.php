@@ -1,6 +1,13 @@
 <?php
 
     session_start();
+	$returnData = array();
+	$returnData['success'] = 1;
+	$returnData['error'] = 0;
+	
+	
+	
+	
 
 	$con = mysqli_connect('127.0.0.1','root','','trex');
 	if(!$con)
@@ -14,43 +21,53 @@
 		exit("Database not selected");
 	}
 	
+	
+	$Name = null;
+	$Pass = null;
 
 	if(1>0) // name
 	{
 		
-	if (isset($_REQUEST['name']))
+	if (isset($_POST['name']))
 	{
-	  $Name = $_REQUEST['name'];
+	  $Name = $_POST['name'];
 	}
-	
 	if(!$Name)
 	{
-		header("Location: siteHTML_Home.php?name=error1");
+		$returnData['success'] = 0;
+		$returnData['error'] = 11;
+		echo json_encode($returnData);
 		exit();
 	}
 	else if($Name)
 	{
+		$Name=(filter_var($Name, FILTER_SANITIZE_MAGIC_QUOTES)) ;
 		$sql = "SELECT pass FROM users WHERE name = '$Name';";
 		
 		$result = $con->query($sql);
 		if ($result->num_rows == 0) 
 		{
-			header("Location: siteHTML_Home.php?name=error2");
+			$returnData['success'] = 0;
+			$returnData['error'] = 12;
+			echo json_encode($returnData);
 			exit();
 		}
 	}
 	
 	}
+
 	
 	if(1>0) // password
 	{
-	if (isset($_REQUEST['pass']))
+	if (isset($_POST['pass']))
 	{
-	  $Pass = $_REQUEST['pass'];
+	  $Pass = $_POST['pass'];
 	}
 	if(!$Pass)
 	{
-		header("Location: siteHTML_Home.php?pass=error1");
+		$returnData['success'] = 0;
+		$returnData['error'] = 21;
+		echo json_encode($returnData);
 		exit();
 	}
 	else if($Pass)
@@ -61,7 +78,9 @@
 			$hashedPassCheck = password_verify($Pass, $row['pass']);
 			if($hashedPassCheck == false)
 			{
-				header("Location: siteHTML_Home.php?pass=error2");
+				$returnData['success'] = 0;
+				$returnData['error'] = 22;
+				echo json_encode($returnData);
 				exit();
 			}
 			else if($hashedPassCheck == true)
@@ -70,11 +89,9 @@
 		
 				$result = $con->query($sql);
 				$row = mysqli_fetch_assoc($result);
-				
 				$_SESSION['u_id'] = $row['id'];
 				$_SESSION['u_na'] = $row['name'];
-
-				header("Location: siteHTML_Page1.php");
+				echo json_encode($returnData);
 				exit();
 			}
 		}
@@ -82,7 +99,10 @@
 	
 	}
 		
-
-	header("Location: siteHTML_Home.php?login=error");
+	
+	$returnData['success'] = 0;
+	$returnData['error'] = 31;
+	echo json_encode($returnData);
+	exit();
 
 ?>

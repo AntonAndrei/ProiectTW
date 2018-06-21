@@ -62,7 +62,7 @@
 	
 	$usrName = $_SESSION['u_na'];
 	
-	echo "<form>
+	echo "<form action=\"siteHTML_Page8.php\">
 	<a style=\"background-color: rgba(100,28,28,0); float:right; padding: 0px 0px;  text-align: justify;\">
 	<input style=\"float:right\" type=\"submit\" value=\"$usrName\" id=\"topBar\">
 	</a>
@@ -81,13 +81,13 @@
   </span>
   </p>
   
-  <div class="cBox" style="margin: 0 auto; padding-bottom: 6vh;">
+  <div id="options" class="cBox" style="margin: 0 auto; padding-bottom: 6vh; height: 20px">
 
-   <div style="width:250px; float: left;">
+   <div  style="width:250px; float: left;">
    <form action="statsShow.php" method="statsShow">
    
 	<h1 class="cText"> Select a month: </h1>
-    <select name="month">
+    <select id="month" name="month">
 	  <option value="01">January</option>
 	  <option value="02">February</option>
 	  <option value="03">March</option>
@@ -110,18 +110,27 @@
 		</script>
 	</div>
 	
+	
+
 	<div class="cButton" style="width:160px; background-color: rgba(0,0,0,0); 
 			 margin: 0 auto; position:relative; float:left;
 			 top:  4.7vh; left: 10px;">
          <input type="submit" name="showStats" value="Show Statistics" id="submitButton">
     </div>
+
+	 
+
 	</form>
 	</div>
 	
+	
 	<div class="cBox" style="margin: 0 auto; height: 4vh;">
 	</div>
-  
-	 <div class="cBox" style="margin: 0 auto; padding-bottom: 6vh;">
+	
+     <div class="cBox" id="divToDownload" style="margin: 0 auto; background-color: rgba(0,0,0,0); padding-bottom: 3vh;">
+	 <div style="background-color: rgba(28,28,28,0.4);
+          width:80vh;
+		  overflow: visible; margin: 0 auto; padding-top: 6vh;">
 	<?php
    
 	error_reporting(0);
@@ -202,12 +211,22 @@
 						$eName = $row["name"];
 						$eDate = $row["date"];
 						$eObs = $row["obs"];
-						echo "<table>";
+						echo "<table style=\"background-color: rgba(0,0,0,0.2);
+    font-family: arial, sans-serif;
+	color: white;
+    border-collapse: collapse;
+    width: 100%;
+	border: 1px solid white;\">";
 						echo "<tr>";
 						echo "<th> Most expensive item in the month of $sMonth : </th>";
 						echo "</tr>";
 						echo "</table>";
-						echo "<table>";
+						echo "<table style=\"background-color: rgba(0,0,0,0.2);
+    font-family: arial, sans-serif;
+	color: white;
+    border-collapse: collapse;
+    width: 100%;
+	border: 1px solid white;\">";
 						echo "<tr>";
 						echo "<th>$eName</th>";
 						echo "<th>$eCost \$</th>";
@@ -218,7 +237,12 @@
 					}
 				}
 				$avgCost = $totalCost / $counter;
-				echo "<table>";
+				echo "<table style=\"background-color: rgba(0,0,0,0.2);
+    font-family: arial, sans-serif;
+	color: white;
+    border-collapse: collapse;
+    width: 100%;
+	border: 1px solid white;\">";
 				echo "<tr>";
 				echo "<th>Number of items</th>";
 				echo "<th width=\"38%\">Average</th>";
@@ -226,21 +250,30 @@
 				echo "</tr>";
 				echo "<tr>";
 				echo "<th>$counter </th>";
-				echo "<th>$avgCost </th>";
-				echo "<th>$totalCost </th>";
+				echo "<th>$avgCost \$</th>";
+				echo "<th>$totalCost \$</th>";
 				echo "</tr>";
 				echo "</table>";	
 		}
 		else
 		{
-			echo "<table>";
+			echo "<table style=\"background-color: rgba(0,0,0,0.2);
+    font-family: arial, sans-serif;
+	color: white;
+    border-collapse: collapse;
+    width: 100%;
+	border: 1px solid white;\">";
 			echo "<tr>";
 			echo "<th> Nothing personal to show in the month of $sMonth. </th>";
 			echo "</tr>";
 			echo "</table>";
 		}
 	  
-			echo"<table style=\"background-color: rgba(0,0,0,0);;\">
+			echo"<table style=\"background-color: rgba(0,0,0,0);font-family: arial, sans-serif;
+	color: white;
+    border-collapse: collapse;
+    width: 100%;
+	border: 1px solid white;\">
 				<tr>
 				<td height=\"60\" style=\"border: 1px solid rgba(1,1,1,0)\"> </td>
 				</tr>
@@ -291,12 +324,22 @@
 							$eName = $rowww["name"];
 							$eDate = $rowww["date"];
 							$eObs = $rowww["obs"];
-							echo "<table>";
+							echo "<table style=\"background-color: rgba(0,0,0,0.2);
+    font-family: arial, sans-serif;
+	color: white;
+    border-collapse: collapse;
+    width: 100%;
+	border: 1px solid white;\">";
 							echo "<tr>";
 							echo "<th> Most expensive item in the $grName category , in the month of $sMonth : </th>";
 							echo "</tr>";
 							echo "</table>";
-							echo "<table>";
+							echo "<table style=\"background-color: rgba(0,0,0,0.2);
+    font-family: arial, sans-serif;
+	color: white;
+    border-collapse: collapse;
+    width: 100%;
+	border: 1px solid white;\">";
 							echo "<tr>";
 							echo "<th>$eName</th>";
 							echo "<th>$eCost \$</th>";
@@ -307,7 +350,12 @@
 						}
 					}
 							$avgCost = $totalCost / $counter;
-							echo "<table>";
+							echo "<table style=\"background-color: rgba(0,0,0,0.2);
+    font-family: arial, sans-serif;
+	color: white;
+    border-collapse: collapse;
+    width: 100%;
+	border: 1px solid white;\">";
 							echo "<tr>";
 							echo "<th width=\"50%\">Average</th>";
 							echo "<th>Total</th>";
@@ -318,7 +366,11 @@
 							echo "</tr>";
 							echo "</table>";	
 				}
-				echo"<table style=\"background-color: rgba(0,0,0,0);;\">
+				echo"<table style=\"background-color: rgba(0,0,0,0)font-family: arial, sans-serif;
+	color: white;
+    border-collapse: collapse;
+    width: 100%;
+	border: 1px solid white;\">
 				<tr>
 				<td height=\"60\" style=\"border: 1px solid rgba(1,1,1,0)\"> </td>
 				</tr>
@@ -328,7 +380,69 @@
 		
 					
    ?>
-  </div>
+	</div>
+	</div>
+	
+	
+	<script>
+	if(1>0){
+	var vUrl = window.location.href;
+			if(vUrl.includes("?01"))
+			{
+				month = "January";
+			} else if(vUrl.includes("?02"))
+			{
+				month = "February";
+			} 
+			else if(vUrl.includes("?03"))
+			{
+				month = "March";
+			} 
+			else if(vUrl.includes("?04"))
+			{
+				month = "April";
+			} 
+			else if(vUrl.includes("?05"))
+			{
+				month = "May";
+			} 
+			else if(vUrl.includes("?06"))
+			{
+				month = "June";
+			} 
+			else if(vUrl.includes("?07"))
+			{
+				month = "July";
+			} 
+			else if(vUrl.includes("?08"))
+			{
+				month = "August";
+			} 
+			else if(vUrl.includes("?09"))
+			{
+				month = "September";
+			} 
+			else if(vUrl.includes("?10"))
+			{
+				month = "October";
+			} 
+			else if(vUrl.includes("?11"))
+			{
+				month = "November";
+			} 
+			else if(vUrl.includes("?12"))
+			{
+				month = "December";
+			} 
+			
+	}
+	var a = document.getElementById("options").appendChild(document.createElement("a"));
+	a.download = month+"_list.html";
+	a.href = "data:text/html," + document.getElementById("divToDownload").innerHTML;
+	a.innerHTML = "<div class=\"cButton\" style=\"background-color: rgba(28,28,28,0.4); width:180px; height: 0px; float:right; position:relative; margin: 0 auto; top: 54px; \"><a style=\"font-size: 17px;\">Download HTML</a></div>"
+	</script>
+	
 
+	
  </body>
 </html>

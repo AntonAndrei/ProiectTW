@@ -62,7 +62,7 @@
 	
 	$usrName = $_SESSION['u_na'];
 	
-	echo "<form>
+	echo "<form action=\"siteHTML_Page8.php\">
 	<a style=\"background-color: rgba(100,28,28,0); float:right; padding: 0px 0px;  text-align: justify;\">
 	<input style=\"float:right\" type=\"submit\" value=\"$usrName\" id=\"topBar\">
 	</a>

@@ -35,6 +35,16 @@
 			exit();
 		}
 		
+		$temp = $Name;
+		$temp = str_replace("'" , "xx"  , $temp);
+		$temp = str_replace("\\" , "xx"  , $temp);
+		if(strlen($temp) != strlen($Name))
+		{
+			header("Location: siteHTML_Signup.php?name=error5");
+			exit();
+		}
+		
+		$Name=(filter_var($Name, FILTER_SANITIZE_MAGIC_QUOTES)) ;
 		$sql = "SELECT name FROM users WHERE name = '$Name';";
 		
 		$result = $con->query($sql);
@@ -47,15 +57,6 @@
 		if(strlen($Name)>19)
 		{
 			header("Location: siteHTML_Page1.php?name=error4");
-			exit();
-		}
-		
-		$temp = $Name;
-		$temp = str_replace("'" , "xx"  , $temp);
-		$temp = str_replace("\\" , "xx"  , $temp);
-		if(strlen($temp) != strlen($Name))
-		{
-			header("Location: siteHTML_Signup.php?name=error5");
 			exit();
 		}
 		
@@ -76,6 +77,16 @@
 	}
 	else if($Email)
 	{
+		$temp = $Email;
+		$temp = str_replace("'" , "xx"  , $temp);
+		$temp = str_replace("\\" , "xx"  , $temp);
+		if(strlen($temp) != strlen($Email))
+		{
+			header("Location: siteHTML_Signup.php?email=error3");
+			exit();
+		}
+		
+		$Email=(filter_var($Email, FILTER_SANITIZE_MAGIC_QUOTES)) ;
 		$sql = "SELECT email FROM users WHERE email = '$Email';";
 		
 		$result = $con->query($sql);
@@ -89,15 +100,6 @@
             header("Location: siteHTML_Signup.php?email=error3");
 			exit();
         }
-		
-		$temp = $Email;
-		$temp = str_replace("'" , "xx"  , $temp);
-		$temp = str_replace("\\" , "xx"  , $temp);
-		if(strlen($temp) != strlen($Email))
-		{
-			header("Location: siteHTML_Signup.php?email=error3");
-			exit();
-		}
 		
 	}
 	

@@ -26,6 +26,7 @@
 	  }
 	  else
 	  {
+		  $Group=(filter_var($Group, FILTER_SANITIZE_MAGIC_QUOTES)) ;
 		  $sql = "SELECT id FROM groups WHERE name = '$Group';";
 		  $result = $con->query($sql);
 		  $row = $result->fetch_assoc();

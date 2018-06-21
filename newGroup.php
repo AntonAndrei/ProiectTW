@@ -57,7 +57,7 @@
 	$grID = $row["MAX(id)"];
 	
 	$grID = $grID + 1;
-	
+	$Name=(filter_var($Name, FILTER_SANITIZE_MAGIC_QUOTES)) ;
 	$sql = "INSERT INTO groups VALUES ($grID,'$Name')";
 	$result = $con->query($sql);
 	

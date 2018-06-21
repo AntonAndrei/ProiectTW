@@ -19,6 +19,22 @@ body{ background-color: white;
           padding: 20px 60px;
           width:80vh;
 		  overflow: visible;}
+		  
+	button {
+    background-color: rgba(28,28,28,0.4);
+    border: none;
+    color: white;
+    padding: 14px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+    font-size: 20px;
+	}  
+	
+	button:hover {
+    background-color: rgba(255,255,255,0.4)
+	} 
+		
     
    .cButton{ 
              background-color: rgba(28,28,28,0.4);
@@ -66,10 +82,11 @@ body{ background-color: white;
 	color: white;
     border-collapse: collapse;
     width: 100%;
+	border: 1px solid white;
     }
 
     td, th {
-    border: 1px solid white;
+   
     text-align: left;
     padding: 8px;
     }
